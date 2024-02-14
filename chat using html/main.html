@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Fast api websocket
+        </title>
+    </head>
+
+
+    <body>
+        <h1>
+            Fast api websocket Chat
+        </h1>
+
+        <div>
+            <input type="text" id="messageInput" placeholder="Type a message">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+
+        <div id="output"></div>
+
+        <script>
+            const userId = prompt("Enter your user Id");
+            const ws = new WebSocket(`ws://localhost:8000/ws/${userId}`);
+
+            ws.onmessage = function (event) {
+                const outputDiv = document.getElementById("output");
+                outputDiv.innerHTML += `<p>Recieved: ${event.data}</p>`;
+            };
+
+            function sendMessage(){
+                const messageInput = document.getElementById("messageInput");
+                const message = messageInput.value;
+                ws.send(message);
+                messageInput.value = ""
+            }
+        </script>
+    </body>
+</html>

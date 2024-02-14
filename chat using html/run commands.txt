@@ -1,0 +1,4 @@
+1) Activate virtual environment
+2) Make sure the path is in the main.py file directory
+3) Run this command  ====== "uvicorn main:app --reload"
+4) Run html the way normally we run html file
